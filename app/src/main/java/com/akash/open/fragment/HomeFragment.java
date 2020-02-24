@@ -71,7 +71,7 @@ import android.view.ViewGroup;
             View v = inflater.inflate(R.layout.fragment_home, container, false);
             recyclerView = v.findViewById(R.id.RecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            String[] data = {"abcd","Akash"};
+            String[] data = {"abcd","Akash","abcd","Akash","abcd","Akash"};
             recyclerView.setAdapter(new AdapterProgram(data));
             return v;
         }
