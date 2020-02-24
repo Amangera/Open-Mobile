@@ -27,7 +27,7 @@
             app:srcCompat="@drawable/texlines" />
 
         <TextView
-            android:id="@+id/Community"
+            android:id="@+id/Forum"
             android:layout_width="wrap_content"
             android:layout_height="61dp"
             android:fontFamily="sans-serif-smallcaps"
@@ -58,6 +58,7 @@
             android:id="@+id/searchView"
             android:layout_width="100dp"
             android:layout_height="20dp"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="15dp"
             android:foregroundGravity="right"
             android:gravity="right"

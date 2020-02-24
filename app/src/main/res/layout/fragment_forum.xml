@@ -26,13 +26,13 @@
             app:srcCompat="@drawable/texlines" />
 
         <TextView
-            android:id="@+id/Community"
+            android:id="@+id/Forum"
             android:layout_width="wrap_content"
             android:layout_height="61dp"
             android:fontFamily="sans-serif-smallcaps"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
-            android:text="Community"
+            android:text="Forum"
             android:textColor="@color/design_default_color_on_secondary"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -52,25 +52,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logomain" />
-
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_marginBottom="15dp"
-            android:foregroundGravity="right"
-            android:gravity="right"
-            android:orientation="vertical"
-            android:persistentDrawingCache="animation"
-            android:textAlignment="gravity"
-            app:layout_constraintBottom_toBottomOf="@+id/Community"
-            app:layout_constraintEnd_toEndOf="@+id/TopBar"
-            app:layout_constraintHorizontal_bias="0.948"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
-
-        </SearchView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
