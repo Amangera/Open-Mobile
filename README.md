@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 # Open-Mobile
 Android application for OPEN
-=======
-# OPEN Android_App
-Community app for OPEN
+
 
 ## App Home
 <img src="https://user-images.githubusercontent.com/46739435/75350005-c41c0f00-58cb-11ea-84e4-7c23687ed915.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" />
@@ -32,4 +29,3 @@ Community app for OPEN
 
 ## Link to Download apk:
 https://drive.google.com/open?id=1gRXCFmFMETIWm7zxpqws0XC2ncYCWDdT
->>>>>>> Updated README.md
