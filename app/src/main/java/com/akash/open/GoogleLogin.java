@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.akash.open.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -19,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,40 +33,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
-
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
-public class Login extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener {
+public class GoogleLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
-
     GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-   // private ActivityGoogleBinding mBinding;
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-
-    private FirebaseAuth mAuth;
-    private static final int RC_SIGN_IN = 9001;
-
-
-    /**
-     * Some older devices needs a small delay between UI widget updates
-     * and a change of the status and navigation bar.
-     */
-
-
-
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
+    public Intent mainIntent;
 
 
 
@@ -73,33 +47,40 @@ public class Login extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_google_login);
 
+        SignInButton googleButton = (SignInButton) findViewById(R.id.signInButton);
+        googleButton.setVisibility(View.GONE);
 
         mAuth = FirebaseAuth.getInstance();
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("537741826237-52es0n9kke68alpcitvp80qde16c8c2p.apps.googleusercontent.com")
+                .requestIdToken(getResources().getString(R.string.client_id))
                 .requestEmail()
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-
         mAuth = FirebaseAuth.getInstance();
 
+        if(mAuth.getCurrentUser()!=null){
+            Log.i("already User" , mAuth.getCurrentUser().getDisplayName());
+            mainIntent = new Intent(this , MainActivity.class);
+            startActivity(mainIntent);
+        }else{
+            googleButton.setVisibility(View.VISIBLE);
+        }
 
+
+
+        googleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("TAG", "Clicked");
+                signIn();
+            }
+        });
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-      //  updateUI(currentUser);
-    }
 
 
     public void signIn() {
@@ -112,7 +93,6 @@ public class Login extends AppCompatActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-          // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -122,9 +102,7 @@ public class Login extends AppCompatActivity implements
                 GoogleSignInAccount account = task.getResult(ApiException.class);
 
                 Log.d("TAG", "firebaseAuthWithGoogle:" + account.getId());
-                    firebaseAuthWithGoogle(account.getIdToken());
-
-
+                firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("TAG", "Google sign in failed", e);
@@ -135,19 +113,9 @@ public class Login extends AppCompatActivity implements
 
 
 
-
-
-
-
-
-    /**
-     * Schedules a call to hide() in delay milliseconds, canceling any
-     * previously scheduled calls.
-     */
-
-
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mainIntent = new Intent(this , MainActivity.class);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -156,12 +124,12 @@ public class Login extends AppCompatActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                          //  updateUI(user);
+
+                            startActivity(mainIntent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "signInWithCredential:failure", task.getException());
-                           // Snackbar.make(mBinding.mainLayout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                           // updateUI(null);
+                            Toast.makeText(GoogleLogin.this, "Login Failed", Toast.LENGTH_SHORT).show();
                         }
 
                         // ...
@@ -172,11 +140,10 @@ public class Login extends AppCompatActivity implements
     }
 
 
-    private void signOut() {
-        // Firebase sign out
+    public void signOut() {
+
         mAuth.signOut();
 
-        // Google sign out
         mGoogleSignInClient.signOut().addOnCompleteListener(this,
                 new OnCompleteListener<Void>() {
                     @Override
@@ -188,7 +155,7 @@ public class Login extends AppCompatActivity implements
 
 
 
-    private void revokeAccess() {
+    public void revokeAccess() {
         // Firebase sign out
         mAuth.signOut();
 
@@ -197,25 +164,10 @@ public class Login extends AppCompatActivity implements
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                     //   updateUI(null);
+                        //   updateUI(null);
                     }
                 });
     }
 
-    public void onClickView(View v) {
-        int i = v.getId();
-        if (i == R.id.signInButton) {
-            Log.i("TAG", "Clicked");
-            signIn();
-        } else if (i == R.id.signOutButton) {
-            signOut();
-        } else if (i == R.id.disconnectButton) {
-            revokeAccess();
-        }
-    }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 }
