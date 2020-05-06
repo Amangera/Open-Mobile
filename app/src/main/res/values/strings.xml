@@ -36,6 +36,8 @@
     <string name="back_to_login">Back to Login</string>
     <string name="Open">NavBar</string>
     <string name="Close">NavBar</string>
+    <string name="MemberLogin">Member Login</string>
+    <string name="KnowMore">Know More</string>
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_display_screen_nav">DisplayScreenNav</string>
