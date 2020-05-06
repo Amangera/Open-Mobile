@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +25,14 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String user;
     private String pass;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         TextView textViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
      //   textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>I don't have account yet. </font><font color='#00b8d4'>create one</font>"));
         textViewCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                progressBar.setVisibility(View.VISIBLE);
                String user= userEdit.getText().toString();
                String pass=userPass.getText().toString();
                 ValidateLogin(user,pass);
@@ -69,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("AUTH SUCCESS", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user!=null){
+                                progressBar.setVisibility(View.GONE);
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));}
                         } else {
                             // If sign in fails, display a message to the user.
