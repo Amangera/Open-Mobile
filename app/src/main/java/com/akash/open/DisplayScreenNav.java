@@ -35,6 +35,7 @@ public class DisplayScreenNav extends AppCompatActivity {
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -53,6 +54,7 @@ public class DisplayScreenNav extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.display_screen_nav, menu);
         return true;
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
