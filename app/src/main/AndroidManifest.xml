@@ -12,15 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NavHomeScreen"
-            android:label="@string/title_activity_nav_home_screen"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".GoogleLogin">
-
-        </activity>
-
+            android:name=".DisplayScreenNav"
+            android:label="@string/title_activity_display_screen_nav"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".GoogleLogin"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

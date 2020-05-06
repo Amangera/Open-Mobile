@@ -38,5 +38,9 @@
     <string name="Close">NavBar</string>
 
     <string name="home_second">Home Second</string>
+    <string name="title_activity_display_screen_nav">DisplayScreenNav</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

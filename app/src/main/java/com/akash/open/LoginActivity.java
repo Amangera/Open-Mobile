@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, DisplayScreenNav.class));
     }
     public void login(String email,String password){
         mAuth.signInWithEmailAndPassword(email, password)
