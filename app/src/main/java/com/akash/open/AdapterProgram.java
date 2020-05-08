@@ -8,18 +8,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.StringBufferInputStream;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class AdapterProgram extends RecyclerView.Adapter<AdapterProgram.ProgramViewHolder>{
 
-    private  String[] userNameData;
+    private  List<Post> postList;
 
 
 
-    public AdapterProgram(String[] data ){
-        this.userNameData = data;
+    public AdapterProgram(List<Post> data ){
+        this.postList = data;
 
     }
 
@@ -35,36 +36,31 @@ public class AdapterProgram extends RecyclerView.Adapter<AdapterProgram.ProgramV
 
     @Override
     public void onBindViewHolder(@NonNull ProgramViewHolder programViewHolder, int i) {
-        String name = userNameData[i];
+        Post post = postList.get(i);
 
+        programViewHolder.Heading.setText(post.title);
+        programViewHolder.profileName.setText(post.author);
+        programViewHolder.textPost.setText(post.description);
 
-//        programViewHolder.textView.setText(name);
-
-
-       // if(imageStatusT == 0){programViewHolder.imgview.setImageResource(R.drawable.bulebutton); }
-       // else if(imageStatusT == 1){programViewHolder.imgview.setImageResource(R.drawable.yellowbutton); }
-        //else if(imageStatusT == 2){programViewHolder.imgview.setImageResource(R.drawable.greenbutton); }
     }
 
     @Override
     public int getItemCount() {
-        return  userNameData.length;
+        return postList.size();
     }
 
     public class ProgramViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
-
+       TextView Heading;
+       TextView profileName;
+       TextView textPost;
 
         public ProgramViewHolder(@NonNull View itemView) {
             super(itemView);
 
-          //  imgview = (ImageView) itemView.findViewById(R.id.statusImageView);
-          //  textView = (TextView) itemView.findViewById(R.id.textView);
-          //  textDataView = (TextView) itemView.findViewById(R.id.textView2);
-         //   textAddressView = (TextView) itemView.findViewById(R.id.AddressTextView);
-         //   textStatusView = (TextView) itemView.findViewById(R.id.statusView);
-
+            Heading = (TextView) itemView.findViewById(R.id.Heading);
+            profileName = (TextView)itemView.findViewById(R.id.profileName);
+            textPost = (TextView)itemView.findViewById(R.id.textPost);
         }
     }
 }

@@ -12,9 +12,19 @@ import android.view.ViewGroup;
     import android.widget.TextView;
 
     import com.akash.open.AdapterProgram;
+    import com.akash.open.Post;
     import com.akash.open.R;
+    import com.google.firebase.database.DataSnapshot;
+    import com.google.firebase.database.DatabaseError;
+    import com.google.firebase.database.DatabaseReference;
+    import com.google.firebase.database.FirebaseDatabase;
+    import com.google.firebase.database.ValueEventListener;
 
-    /**
+    import java.util.ArrayList;
+    import java.util.Iterator;
+    import java.util.List;
+
+/**
      * A simple {@link Fragment} subclass.
      * Use the {@link HomeFragment#newInstance} factory method to
      * create an instance of this fragment.
@@ -28,6 +38,11 @@ import android.view.ViewGroup;
         private String mParam1;
         private String mParam2;
         RecyclerView recyclerView;
+
+        FirebaseDatabase database;
+        DatabaseReference myRef;
+        List<Post> postList;
+
 
         public HomeFragment() {
             // Required empty public constructor
@@ -60,6 +75,8 @@ import android.view.ViewGroup;
                 mParam2 = getArguments().getString(ARG_PARAM2);
             }
 
+            postList = new ArrayList<Post>();
+
 
 
         }
@@ -72,7 +89,46 @@ import android.view.ViewGroup;
             recyclerView = v.findViewById(R.id.RecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             String[] data = {"abcd","Akash","abcd","Akash","abcd","Akash"};
-            recyclerView.setAdapter(new AdapterProgram(data));
+
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("CommunityPosts");
+
+            /*Post p = new Post();
+            p.setAuthor("Dummy Author");
+            p.setTitle("DummyTitle");
+            p.setDescription("DummyDescription");
+            myRef.setValue(p);
+            */
+
+
+               Log.i("Ref", myRef.getKey().toString());
+// Read from the database
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    postList.clear();
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+
+                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                        Post post = postSnapshot.getValue(Post.class);
+                        Log.e("Get Data", post.getAuthor());
+                        postList.add(post);
+                    }
+
+                    recyclerView.setAdapter(new AdapterProgram(postList));
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("TT", "Failed to read value.", error.toException());
+                }
+            });
+
+
+
             return v;
         }
 

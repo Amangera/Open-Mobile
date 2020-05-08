@@ -60,7 +60,6 @@ public class GalleryFragment extends Fragment {
 
         imageRef = new ArrayList<StorageReference>();
         storage = FirebaseStorage.getInstance();
-
         imgView = new ImageView(getContext());
         // Create a storage reference from our app
       //  StorageReference listRef = storage.getReference().child("images/");
@@ -91,10 +90,7 @@ public class GalleryFragment extends Fragment {
                         // Uh-oh, an error occurred!
                     }
                 });
-// ImageView in your Activity
 
-// Download directly from StorageReference using Glide
-// (See MyAppGlideModule for Loader registration)
 
         RequestOptions options = new RequestOptions()
                 .centerCrop()
@@ -102,19 +98,12 @@ public class GalleryFragment extends Fragment {
                 .error(R.drawable.upes)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
-           // int h = root.findViewById(R.id.imageView).getHeight();
 
-    /*      Glide.with(this)
-                .load(imagesRef)
-                   .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
-                .into(imageView);*/
 
 
 
         recyclerView = root.findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        int data[] = {1,2,3,4,5,6,7};
-
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
