@@ -35,8 +35,14 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_aboutUs"
         android:name="com.akash.open.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="About Us"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_vision"
+        android:name="com.akash.open.ui.OurVisionFragment"
+        android:label="Our Vision"
+        tools:layout="@layout/our_vision_fragment" />
 </navigation>
