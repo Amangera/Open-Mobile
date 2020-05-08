@@ -7,25 +7,17 @@
     android:layout_height="match_parent">
 
 
-    <ViewFlipper
-        android:id="@+id/v_flipper"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/LogoImgView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/v_flipper"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.041"
-        app:srcCompat="@drawable/logomain"/>
+        app:srcCompat="@drawable/logowithdetail" />
 
     <TextView
         android:id="@+id/text_home"
@@ -45,51 +37,51 @@
 
     <ImageView
         android:id="@+id/Association1"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/text_home"
         app:layout_constraintTop_toBottomOf="@+id/text_home"
-        app:srcCompat="@drawable/fui_ic_googleg_color_24dp" />
+        app:srcCompat="@drawable/linuxfoundation" />
 
     <ImageView
         android:id="@+id/association2"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/Association1"
         app:layout_constraintTop_toTopOf="@+id/Association1"
-        app:srcCompat="@drawable/fui_ic_googleg_color_24dp" />
+        app:srcCompat="@drawable/upes" />
 
     <ImageView
         android:id="@+id/association3"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/association2"
         app:layout_constraintTop_toTopOf="@+id/association2"
-        app:srcCompat="@drawable/fui_ic_googleg_color_24dp" />
+        app:srcCompat="@drawable/ibm" />
 
     <ImageView
         android:id="@+id/association4"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/association3"
         app:layout_constraintTop_toTopOf="@+id/association3"
-        app:srcCompat="@drawable/fui_ic_googleg_color_24dp" />
+        app:srcCompat="@drawable/xebia" />
 
     <ImageView
         android:id="@+id/association5"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         app:layout_constraintEnd_toEndOf="@+id/text_home"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/association4"
         app:layout_constraintTop_toTopOf="@+id/association4"
-        app:srcCompat="@drawable/fui_ic_googleg_color_24dp" />
+        app:srcCompat="@drawable/tecmint" />
 
     <TextView
         android:id="@+id/text_home2"
@@ -104,7 +96,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/association3"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <Button
         android:id="@+id/buttonKnowMore"
@@ -112,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:text="@string/KnowMore"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,19 +128,20 @@
         android:id="@+id/findUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="24dp"
         android:text="Find Us:"
         android:textColor="@color/common_google_signin_btn_text_light_focused"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/InstaLogo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="112dp"
         android:layout_marginBottom="20dp"
@@ -162,8 +155,8 @@
 
     <ImageView
         android:id="@+id/github"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="40dp"
         app:layout_constraintStart_toEndOf="@+id/facebook"
         app:layout_constraintTop_toTopOf="@+id/facebook"
@@ -171,15 +164,35 @@
 
     <ImageView
         android:id="@+id/facebook"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="280dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/findUs"
-        app:layout_constraintTop_toBottomOf="@+id/findUs"
+        app:layout_constraintTop_toTopOf="@+id/findUs"
         app:srcCompat="@drawable/facebook" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ViewFlipper
+            android:id="@+id/v_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

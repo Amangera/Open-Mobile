@@ -57,16 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/LocationLogo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/location"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/LocationText"
                 android:layout_width="0dp"
@@ -79,8 +69,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/LocationLogo"
-                app:layout_constraintVertical_bias="0.222" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/mapmarker"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -107,16 +106,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
-                app:layout_constraintVertical_bias="0.217"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
                 tools:text="Dummy Contact" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageView3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/contact"
+                android:src="@drawable/tooltipaccount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

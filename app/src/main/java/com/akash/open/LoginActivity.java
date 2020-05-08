@@ -26,11 +26,27 @@ public class LoginActivity extends AppCompatActivity {
     private String user;
     private String pass;
     private ProgressBar progressBar;
+    Button btn;
+    TextView textViewCreateAccount;
+    Button buttonGuestLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        TextView textViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
+
+        final EditText userEdit=(EditText)findViewById(R.id.editTextEmail);
+        final EditText userPass=(EditText)findViewById(R.id.editTextPassword);
+        btn=(Button)findViewById(R.id.buttonLogin);
+        textViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
+        buttonGuestLogin = (Button)findViewById(R.id.buttonGuestLogin);
+
+        userEdit.setVisibility(View.GONE);
+        userPass.setVisibility(View.GONE);
+        btn.setVisibility(View.GONE);
+        textViewCreateAccount.setVisibility(View.GONE);
+        buttonGuestLogin.setVisibility(View.GONE);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
      //   textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>I don't have account yet. </font><font color='#00b8d4'>create one</font>"));
@@ -41,10 +57,19 @@ public class LoginActivity extends AppCompatActivity {
                // startActivity(intent);
             }
         });
-        final EditText userEdit=(EditText)findViewById(R.id.editTextEmail);
-        final EditText userPass=(EditText)findViewById(R.id.editTextPassword);
+
         mAuth = FirebaseAuth.getInstance();
-        Button btn=(Button)findViewById(R.id.buttonLogin);
+
+        if(mAuth.getCurrentUser() == null){
+            userEdit.setVisibility(View.VISIBLE);
+            userPass.setVisibility(View.VISIBLE);
+            btn.setVisibility(View.VISIBLE);
+            textViewCreateAccount.setVisibility(View.VISIBLE);
+            buttonGuestLogin.setVisibility(View.VISIBLE);
+        }
+        else{
+            startActivity(new Intent(LoginActivity.this, DisplayScreenNav.class));
+        }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,14 +82,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        startActivity(new Intent(LoginActivity.this, DisplayScreenNav.class));
+
     }
+
+
     public void login(String email,String password){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -76,7 +105,8 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user!=null){
                                 progressBar.setVisibility(View.GONE);
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));}
+                                startActivity(new Intent(LoginActivity.this, DisplayScreenNav.class));
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("AUTH FAILED", "signInWithEmail:failure", task.getException());
