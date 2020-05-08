@@ -1,10 +1,12 @@
 package com.akash.open.ui.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.akash.open.MainActivity;
 import com.akash.open.R;
 import com.akash.open.SliderAdapterExample;
 import com.akash.open.SliderItem;
@@ -29,7 +32,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     ViewFlipper v_flipper;
-
+    Button memberLogin;
 
     private SliderAdapterExample adapter;
 
@@ -39,13 +42,19 @@ public class HomeFragment extends Fragment {
         int images[] = {R.drawable.g4 , R.drawable.g5 };
 
 
-
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.nav_home_fragment, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         final TextView textView2 = root.findViewById(R.id.text_home2);
         v_flipper = root.findViewById(R.id.v_flipper);
+        memberLogin = (Button)root.findViewById(R.id.buttonKnowMore);
+        memberLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MainActivity.class));
+            }
+        });
 
 
         for(int i = 0; i< images.length ; i++){
