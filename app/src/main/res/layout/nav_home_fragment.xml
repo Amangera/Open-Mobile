@@ -77,7 +77,7 @@
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/text_home"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/association4"
         app:layout_constraintTop_toTopOf="@+id/association4"
@@ -129,14 +129,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="20dp"
         android:text="Find Us:"
         android:textColor="@color/common_google_signin_btn_text_light_focused"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMemberLogin"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/InstaLogo"
@@ -168,11 +171,13 @@
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="280dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/findUs"
-        app:layout_constraintTop_toTopOf="@+id/findUs"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMemberLogin"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/facebook" />
 
     <androidx.cardview.widget.CardView

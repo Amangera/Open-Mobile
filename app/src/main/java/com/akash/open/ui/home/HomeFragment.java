@@ -2,6 +2,8 @@ package com.akash.open.ui.home;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
@@ -44,7 +47,7 @@ public class HomeFragment extends Fragment {
 
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.nav_home_fragment, container, false);
+        final View root = inflater.inflate(R.layout.nav_home_fragment, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         final TextView textView2 = root.findViewById(R.id.text_home2);
         v_flipper = root.findViewById(R.id.v_flipper);
@@ -69,8 +72,35 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        ImageView github = (ImageView) root.findViewById(R.id.github);
+        ImageView insta = (ImageView) root.findViewById(R.id.InstaLogo);
+        ImageView fb = (ImageView)root.findViewById(R.id.facebook);
+        github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://github.com/upes-open";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(root.getContext(), "Work in Progress :)", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        insta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://www.instagram.com/_o.p.e.n_/";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
 
 

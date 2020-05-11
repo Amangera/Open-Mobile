@@ -88,17 +88,10 @@ import android.view.ViewGroup;
             View v = inflater.inflate(R.layout.fragment_home, container, false);
             recyclerView = v.findViewById(R.id.RecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            String[] data = {"abcd","Akash","abcd","Akash","abcd","Akash"};
 
             database = FirebaseDatabase.getInstance();
             myRef = database.getReference("CommunityPosts");
 
-            /*Post p = new Post();
-            p.setAuthor("Dummy Author");
-            p.setTitle("DummyTitle");
-            p.setDescription("DummyDescription");
-            myRef.setValue(p);
-            */
 
 
                Log.i("Ref", myRef.getKey().toString());
