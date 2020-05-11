@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
     import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+    import android.widget.ProgressBar;
     import android.widget.TextView;
 
     import com.akash.open.AdapterProgram;
@@ -42,6 +43,7 @@ import android.view.ViewGroup;
         FirebaseDatabase database;
         DatabaseReference myRef;
         List<Post> postList;
+        ProgressBar progressBar;
 
 
         public HomeFragment() {
@@ -86,6 +88,10 @@ import android.view.ViewGroup;
                                  Bundle savedInstanceState) {
             //Inflate the layout for this fragment
             View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+            progressBar = v.findViewById(R.id.progressBar2);
+            progressBar.setVisibility(View.VISIBLE);
+
             recyclerView = v.findViewById(R.id.RecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -110,7 +116,7 @@ import android.view.ViewGroup;
                     }
 
                     recyclerView.setAdapter(new AdapterProgram(postList));
-
+                    progressBar.setVisibility(View.GONE);
                 }
 
                 @Override

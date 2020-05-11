@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.akash.open.AdapterProgram;
 import com.akash.open.Post;
@@ -40,6 +41,8 @@ public class SocialFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference myRef;
     List<Post> postList;
+
+    ProgressBar progressBar;
 
     public SocialFragment() {
         // Required empty public constructor
@@ -84,6 +87,9 @@ public class SocialFragment extends Fragment {
         //Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_forum, container, false);
 
+        progressBar = v.findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.VISIBLE);
+
         recyclerView = v.findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -104,6 +110,7 @@ public class SocialFragment extends Fragment {
                 }
 
                 recyclerView.setAdapter(new AdapterProgram(postList));
+                progressBar.setVisibility(View.GONE);
 
             }
 

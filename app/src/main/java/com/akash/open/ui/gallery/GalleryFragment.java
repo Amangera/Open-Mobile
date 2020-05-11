@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +50,7 @@ public class GalleryFragment extends Fragment {
     FirebaseStorage storage;
     List<StorageReference> imageRef;
     ImageView imgView;
+    ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +59,9 @@ public class GalleryFragment extends Fragment {
         galleryViewModel =
                 ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+
+        progressBar = root.findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.VISIBLE);
 
         imageRef = new ArrayList<StorageReference>();
         storage = FirebaseStorage.getInstance();
@@ -82,6 +87,7 @@ public class GalleryFragment extends Fragment {
 
                         }
                         recyclerView.setAdapter(new AdapterProgramGallary(imageRef));
+                        progressBar.setVisibility(View.GONE);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

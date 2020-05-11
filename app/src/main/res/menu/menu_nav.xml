@@ -6,12 +6,12 @@
     android:icon="@drawable/ic_home_black_24dp"/>
     <item
         android:id="@+id/forum"
-        android:title="Forum"
-        android:icon="@drawable/ic_forum_black_24dp"/>
+        android:title="News"
+        android:icon="@drawable/news"/>
     <item
         android:id="@+id/social"
-        android:title="Social"
-        android:icon="@drawable/ic_domain_black_24dp"/>
+        android:title="Projects"
+        android:icon="@drawable/project"/>
     <item
         android:id="@+id/profile"
         android:title="Profile"

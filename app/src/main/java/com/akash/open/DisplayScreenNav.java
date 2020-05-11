@@ -1,7 +1,10 @@
 package com.akash.open;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
@@ -10,6 +13,7 @@ import com.akash.open.ui.OurVisionFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 public class DisplayScreenNav extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,8 @@ public class DisplayScreenNav extends AppCompatActivity {
         setContentView(R.layout.activity_display_screen_nav);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+       mAuth = FirebaseAuth.getInstance();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
@@ -47,12 +54,21 @@ public class DisplayScreenNav extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-
-
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.logout_app:
+                mAuth.signOut();
+                finish();
+                startActivity(new Intent(getApplicationContext() , LoginActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,6 +77,11 @@ public class DisplayScreenNav extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

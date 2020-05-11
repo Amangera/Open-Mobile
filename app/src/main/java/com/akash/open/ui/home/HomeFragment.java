@@ -20,10 +20,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.akash.open.LoginActivity;
 import com.akash.open.MainActivity;
 import com.akash.open.R;
 import com.akash.open.SliderAdapterExample;
 import com.akash.open.SliderItem;
+import com.google.firebase.auth.FirebaseAuth;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -36,6 +38,8 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     ViewFlipper v_flipper;
     Button memberLogin;
+    Button knowMore;
+    FirebaseAuth mAuth;
 
     private SliderAdapterExample adapter;
 
@@ -44,6 +48,8 @@ public class HomeFragment extends Fragment {
 
         int images[] = {R.drawable.g4 , R.drawable.g5 };
 
+        mAuth = FirebaseAuth.getInstance();
+
 
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -51,14 +57,27 @@ public class HomeFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.text_home);
         final TextView textView2 = root.findViewById(R.id.text_home2);
         v_flipper = root.findViewById(R.id.v_flipper);
-        memberLogin = (Button)root.findViewById(R.id.buttonKnowMore);
-        memberLogin.setOnClickListener(new View.OnClickListener() {
+        knowMore = (Button)root.findViewById(R.id.buttonKnowMore);
+        memberLogin = (Button)root.findViewById(R.id.buttonMemberLogin);
+
+        if(mAuth.getCurrentUser() == null){
+            knowMore.setVisibility(View.GONE);
+        }else {
+            memberLogin.setVisibility(View.GONE);
+        }
+        knowMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), MainActivity.class));
             }
         });
 
+        memberLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(root.getContext() , LoginActivity.class));
+            }
+        });
 
         for(int i = 0; i< images.length ; i++){
             flipperImages(images[i]);

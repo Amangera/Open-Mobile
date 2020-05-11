@@ -99,30 +99,35 @@
         app:layout_constraintVertical_bias="0.111" />
 
     <Button
-        android:id="@+id/buttonKnowMore"
-        style="@style/DefaultButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="@string/KnowMore"
-        android:textColor="#ffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home2" />
-
-    <Button
         android:id="@+id/buttonMemberLogin"
         style="@style/DefaultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:text="@string/MemberLogin"
         android:textColor="#ffffff"
-        app:layout_constraintEnd_toEndOf="@+id/buttonKnowMore"
-        app:layout_constraintStart_toStartOf="@+id/buttonKnowMore"
-        app:layout_constraintTop_toBottomOf="@+id/buttonKnowMore" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_home2"
+        app:layout_constraintVertical_bias="0.275" />
+
+    <Button
+        android:id="@+id/buttonKnowMore"
+        style="@style/DefaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:text="@string/KnowMore"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_home2"
+        app:layout_constraintVertical_bias="0.031" />
 
     <TextView
         android:id="@+id/findUs"

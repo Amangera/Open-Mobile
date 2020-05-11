@@ -1,5 +1,6 @@
 package com.akash.open.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akash.open.LoginActivity;
 import com.akash.open.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.fragment.app.Fragment;
 
@@ -78,7 +81,17 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
         final View root =  inflater.inflate(R.layout.fragment_profile, container, false);
+        TextView logout = root.findViewById(R.id.logoutView);
 
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                startActivity(new Intent(root.getContext() , LoginActivity.class));
+            }
+        });
 
 
     return root;
