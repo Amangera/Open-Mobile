@@ -17,9 +17,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+        
+        
+
+    - name: Permission
+      run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: bash ./gradlew assembleDebug --stacktrace
+      run: ./gradlew 
       
     - name: Upload APK
       uses: actions/upload-artifact@v1
