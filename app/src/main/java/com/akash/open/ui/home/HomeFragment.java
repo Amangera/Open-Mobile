@@ -2,12 +2,15 @@ package com.akash.open.ui.home;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterViewFlipper;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,12 +23,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.akash.open.AdapterProgramGallary;
+import com.akash.open.FlipperAdapter;
 import com.akash.open.LoginActivity;
 import com.akash.open.MainActivity;
 import com.akash.open.R;
 import com.akash.open.SliderAdapterExample;
 import com.akash.open.SliderItem;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -33,22 +47,27 @@ import com.smarteist.autoimageslider.SliderView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    ViewFlipper v_flipper;
     Button memberLogin;
     Button knowMore;
     FirebaseAuth mAuth;
+    FirebaseStorage storage;
+    List<StorageReference> imageRef;
+    ImageView imgView;
+    private AdapterViewFlipper adapterViewFlipper;
 
     private SliderAdapterExample adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        int images[] = {R.drawable.g4 , R.drawable.g5 };
 
         mAuth = FirebaseAuth.getInstance();
+
 
 
         homeViewModel =
@@ -56,9 +75,15 @@ public class HomeFragment extends Fragment {
         final View root = inflater.inflate(R.layout.nav_home_fragment, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         final TextView textView2 = root.findViewById(R.id.text_home2);
-        v_flipper = root.findViewById(R.id.v_flipper);
         knowMore = (Button)root.findViewById(R.id.buttonKnowMore);
         memberLogin = (Button)root.findViewById(R.id.buttonMemberLogin);
+        adapterViewFlipper = (AdapterViewFlipper) root.findViewById(R.id.adapterViewFlipper);
+
+
+        storage = FirebaseStorage.getInstance();
+
+
+        imageRef = new ArrayList<StorageReference>();
 
         if(mAuth.getCurrentUser() == null){
             knowMore.setVisibility(View.GONE);
@@ -79,9 +104,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        for(int i = 0; i< images.length ; i++){
-            flipperImages(images[i]);
-        }
+
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -121,22 +144,55 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        final StorageReference imagesRef = FirebaseStorage.getInstance().getReference().child("images/");
+
+
+        imagesRef.listAll()
+                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                    @Override
+                    public void onSuccess(ListResult listResult) {
+                        for (StorageReference prefix : listResult.getPrefixes()) {
+                            // All the prefixes under listRef.
+                            // You may call listAll() recursively on them.
+                        }
+
+                        for (StorageReference item : listResult.getItems()) {
+                            // All the items under listRef.
+                            imageRef.add(item);
+
+                        }
+
+                    }
+                })
+                .addOnCompleteListener(new OnCompleteListener<ListResult>() {
+            @Override
+            public void onComplete(@NonNull Task<ListResult> task) {
+                FlipperAdapter adapter = new FlipperAdapter(root.getContext(), imageRef);
+                Log.i("IMAGE REF" , imageRef +"  :  "  + adapter.getCount());
+
+                adapterViewFlipper.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapterViewFlipper.setAdapter(new FlipperAdapter(root.getContext(), imageRef));
+                    }
+                });
+                //adding it to adapterview flipper
+
+                adapterViewFlipper.setFlipInterval(1500);
+                adapterViewFlipper.startFlipping();
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Uh-oh, an error occurred!
+                    }
+                });
+
 
 
         return root;
     }
 
 
-    public void flipperImages(int image){
-        ImageView imageView = new ImageView(getContext());
-        imageView.setBackgroundResource(image);
-
-        v_flipper.addView(imageView);
-        v_flipper.setFlipInterval(4000);
-        v_flipper.setAutoStart(true);
-
-        v_flipper.setInAnimation(getContext(),android.R.anim.slide_in_left);
-        v_flipper.setOutAnimation(getContext(),android.R.anim.slide_out_right);
-
-    }
 }
