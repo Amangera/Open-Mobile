@@ -1,32 +1,23 @@
-
 # Open-Mobile
-Android application for OPEN
+Official community app for the OPEN-UPES.
+
+Stay up to date on the latest news, events, and community projects with the OPEN-Mobile App. View on going projects and simply feel part of an active and ever-growing family. Stay updated with all news and feeds via mobile interface all at one place.
 
 
-## App Home
-<img src="https://user-images.githubusercontent.com/46739435/75350005-c41c0f00-58cb-11ea-84e4-7c23687ed915.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" />
+## Key Features
+* Catch up on the latest news.
+* Participate in all kinds of events.
+* Stay updated with OPEN's gallery.
+* Join OPEN community.
 
+### Login Screen & Home Screen
+<img src="https://user-images.githubusercontent.com/46739435/81595842-c11bbf80-93e0-11ea-8f09-4c07192829c9.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" /><img src="https://user-images.githubusercontent.com/46739435/81596106-24a5ed00-93e1-11ea-9585-24e9cf790f38.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" />
 
-## Implemented :
-* Home: Recycler View
-* Fragment Switch
-* Logo
+### Other Activities
+<img src="https://user-images.githubusercontent.com/46739435/81596358-8f572880-93e1-11ea-86a4-ddda800a4e9e.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" /><img src="https://user-images.githubusercontent.com/46739435/81596431-b31a6e80-93e1-11ea-8351-b2126a230c0f.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" /><img src="https://user-images.githubusercontent.com/46739435/81596480-caf1f280-93e1-11ea-938f-4c2cc59a3384.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" />
 
-#### Recycler View Contains:
-* Pictures/Screenshot of posts
-* Heading
-* Details
-* Post Views
-* Comments
-* Profile pic of user
-* Username
-<img src="https://user-images.githubusercontent.com/46739435/75353591-b10c3d80-58d1-11ea-976b-eea55ce13ec2.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500" height="300" />
+## For Contribution
+see documentation [here](CONTRIBUTING.md)
 
-## Future implementation
-* Oauth: Login & Sign Up
-* Firebase addition
-* Dynamic post [RecyclerView] link to firebase
-* Build all fragments: Profile, Social, Forums
-
-## Link to Download apk:
-https://drive.google.com/open?id=1gRXCFmFMETIWm7zxpqws0XC2ncYCWDdT
+## Download Link
+https://drive.google.com/open?id=1bR4EkNwqtN5mlH1c1MlcUuotGcrgZ2Eo
