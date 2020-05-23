@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.akash.open">
 
-
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,11 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".flutterAct"></activity>
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".DisplayScreenNav"
             android:label="@string/title_activity_display_screen_nav"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".GoogleLogin"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".GoogleLogin" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -20,6 +20,29 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        profile {
+            initWith debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+        defaultConfig {
+            ndk {
+                // Filter for architectures supported by Flutter.
+                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+            }
+        }
+
+
+}
+repositories {
+    maven {
+        url '/home/akash/Desktop/Flutter/open_flutter/build/host/outputs/repo'
+    }
+    maven {
+        url 'https://storage.googleapis.com/download.flutter.io'
     }
 }
 
@@ -60,6 +83,10 @@ dependencies {
     // annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.firebaseui:firebase-ui-storage:3.3.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    debugImplementation 'akashsaini.com.openflutter:flutter_debug:1.0'
+    profileImplementation 'akashsaini.com.openflutter:flutter_profile:1.0'
+    releaseImplementation 'akashsaini.com.openflutter:flutter_release:1.0'
+//    implementation project('akashsaini.com.openflutter:flutter')
 
     //annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
